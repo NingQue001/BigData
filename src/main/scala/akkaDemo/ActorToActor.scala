@@ -2,10 +2,15 @@ package akkaDemo
 
 import akka.actor.{Actor, ActorSystem, Props}
 
+/**
+ * Akka framwork，并行，容错和可扩展的RPC（Remote Procedure Call）框架，RPC是进程间的通讯
+ * 基于Actor模型，ActorSystem中的Actor互相发送异步消息，每个Actor都拥有一个mailbox来存储接收到的message
+ * 发送消息的线程是共享的，ActorSystem维护着一个线程池
+ */
 object ActorToActor {
   def main(args: Array[String]): Unit = {
-    val system = ActorSystem("system")
-    val actor1 = system.actorOf(Props[Actor1])
+    val actorSystem = ActorSystem("system")
+    val actor1 = actorSystem.actorOf(Props[Actor1])
     actor1 ! "主函数main发给Actor1的消息"
   }
 }
