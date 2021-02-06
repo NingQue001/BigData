@@ -38,7 +38,8 @@ public class NioWebServer {
                     socketChannel.configureBlocking(false);
                     socketChannel.register(selector, SelectionKey.OP_READ);
                 } else if (key.isReadable()) {
-                    SocketChannel socketChannel = (SocketChannel) key.channel(); // 注意这里是key.channel(),而不是serverSocketChannel.accept()
+                    // 注意这里是key.channel(),而不是serverSocketChannel.accept()
+                    SocketChannel socketChannel = (SocketChannel) key.channel();
                     readBuffer.clear();
                     socketChannel.read(readBuffer);
 
@@ -48,7 +49,8 @@ public class NioWebServer {
                     }
                     key.interestOps(SelectionKey.OP_WRITE);
                 } else if (key.isWritable()) {
-                    SocketChannel socketChannel = (SocketChannel) key.channel(); // 注意这里是key.channel(),而不是serverSocketChannel.accept()
+                    // 注意这里是key.channel(),而不是serverSocketChannel.accept()
+                    SocketChannel socketChannel = (SocketChannel) key.channel();
                     writeBuffer.rewind();
                     socketChannel.write(writeBuffer);
 
